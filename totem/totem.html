@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totem de Atendimento - NS BaseTech</title>
+    
+    <link rel="stylesheet" href="/sistema/global/font.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="stylesheet" href="totem.css">
+</head>
+<body>
+
+    <div class="totem-container">
+
+        <div id="tela-inicial" class="tela ativa">
+            <div class="logo">
+             <img src="/sistema/Logo/LOGO_01_DEGRADE.png" alt="Logo NS BaseTech">
+                <h1>Bem-vindo(a)!</h1>
+            </div>
+            <p>Sua saúde, nossa prioridade.</p>
+            <button id="btn-iniciar" class="btn-principal">INICIAR ATENDIMENTO</button>
+        </div>
+
+        <div id="tela-escolha" class="tela">
+            <h2>Como deseja se identificar?</h2>
+            <div class="botoes-escolha">
+                <button id="btn-biometria" class="btn-opcao">
+                    <i class="bi bi-fingerprint"></i>
+                    <span>BIOMETRIA</span>
+                </button>
+                <button id="btn-facial" class="btn-opcao">
+                    <i class="bi bi-person-bounding-box"></i>
+                    <span>RECONHECIMENTO FACIAL</span>
+                </button>
+            </div>
+             <button id="btn-voltar-inicio" class="btn-secundario">VOLTAR</button>
+        </div>
+        
+        <div id="tela-aguardando" class="tela">
+            <h2 id="titulo-aguardando">Aguardando...</h2>
+            <div class="spinner"></div>
+            <p id="instrucao-aguardando">Aproxime-se para identificação.</p>
+        </div>
+
+        <div id="tela-ticket" class="tela">
+            <div class="ticket">
+                <div class="ticket-header">
+                    
+                    <img src="/sistema/Logo/LOGO_01_DEGRADE.png" alt="Logo NS BaseTech" class="ticket-logo">
+                    
+                    <h2>Ticket de Atendimento</h2>
+                </div>
+                <div class="ticket-body">
+                    <p><strong>Paciente:</strong> <span id="ticket-paciente"></span></p>
+                    <p><strong>Profissional:</strong> <span id="ticket-profissional"></span></p>
+                    <p><strong>Data:</strong> <span id="ticket-data"></span></p>
+                    <p><strong>Horário da Consulta:</strong> <span id="ticket-horario"></span></p>
+                    <div class="tempo-espera">
+                        <p>Tempo estimado de espera:</p>
+                        <span id="ticket-espera"></span>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <p>Aguarde ser chamado pelo painel.</p>
+                </div>
+            </div>
+            <p class="instrucao-impressao">Seu ticket está sendo impresso...</p>
+        </div>
+    </div>
+
+    <script src="totem.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+/* Importando a fonte global que você já usa */
+@import url('/sistema/global/font.css');
+
+body {
+    margin: 0;
+    font-family: 'Hammersmith One', sans-serif;
+    background: #065757;
+    color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.totem-container {
+    width: 95%;
+    max-width: 700px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    /* --- NOVA SOMBRA COMBINADA AQUI --- */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25), /* Sombra escura (a que já existia) */
+                0px 0px 50px -10px rgba(255, 255, 255, 0.2); /* Sombra branca sutil por trás */
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gerenciamento das telas */
+.tela { display: none; animation: fadeIn 0.5s ease-in-out; }
+.tela.ativa { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Textos e logo com cores claras para ler no fundo escuro */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.logo img {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 25px;
+}
+h1 { font-size: 3rem; color: white; margin: 0; }
+h2 { font-size: 2.2rem; margin-bottom: 40px; color: #f0f2f5; }
+p { font-size: 1.3rem; color: #bdc3c7; margin-bottom: 40px; }
+
+/* Botão Principal com o verde-claro para se destacar no painel escuro */
+.btn-principal {
+    background: linear-gradient(145deg, rgba(133, 215, 194, 1), rgba(100, 190, 170, 1));
+    color: #065757;
+    box-shadow: rgba(133, 215, 194, 0.4) 0px 10px 20px -10px;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-family: 'Hammersmith One', sans-serif;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.btn-principal:hover {
+    transform: translateY(-5px);
+    box-shadow: rgba(133, 215, 194, 0.6) 0px 15px 25px -10px;
+}
+
+/* Resto do CSS (já estava correto para este layout) */
+.btn-secundario { background-color: #6c757d; color: white; margin-top: 20px; }
+.btn-secundario:hover { background-color: #5a6268; }
+.botoes-escolha { display: flex; justify-content: center; gap: 40px; }
+.btn-opcao {
+    background-color: #f8f9fa; border: 2px solid #dee2e6; border-radius: 20px;
+    width: 250px; height: 250px; cursor: pointer; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; transition: all 0.3s;
+}
+.btn-opcao:hover {
+    border-color: rgba(133, 215, 194, 1); transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-opcao i { font-size: 80px; color: #065757; margin-bottom: 20px; }
+.btn-opcao span { font-size: 1.5rem; font-weight: 700; color: #065757; }
+.spinner {
+    width: 80px; height: 80px; border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid rgba(133, 215, 194, 1); border-radius: 50%;
+    animation: spin 1s linear infinite; margin: 40px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Estilo base do ticket */
+.ticket {
+    border: 2px dashed #333; padding: 25px; text-align: left;
+    background-color: #f5f5f5; color: #333;
+}
+.ticket-body p { font-size: 1.2rem; margin: 12px 0; color: #333; }
+.tempo-espera { background-color: #e9ecef; text-align: center; padding: 15px; border-radius: 10px; margin-top: 20px; }
+.tempo-espera p { margin: 0; font-size: 1.1rem; color: #333; }
+.tempo-espera span { font-size: 2rem; font-weight: 700; color: #065757; }
+.ticket-footer { text-align: center; margin-top: 20px; font-style: italic; color: #555; }
+.instrucao-impressao { margin-top: 25px; font-weight: 700; color: #28a745; font-size: 1.2rem; }
+
+
+/* =================================================================== */
+/* NOVO CÓDIGO PARA O LOGO NO CABEÇALHO DO TICKET
+/* =================================================================== */
+
+.ticket-header {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px dashed #ccc;
+}
+
+.ticket-header .ticket-logo {
+    max-width: 80px;
+    height: auto;
+}
+
+.ticket-header h2 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    color: #333; /* Garante que o texto seja escuro no ticket claro */
+}
+
+/* =================================================================== */
+/* AJUSTES PARA O TABLET "EM PÉ" (MODO RETRATO / PORTRAIT)
+/* =================================================================== */
+
+@media (orientation: portrait) {
+
+    /* 1. Altera a direção dos botões para coluna */
+    .botoes-escolha {
+        flex-direction: column; /* Coloca um botão em cima do outro */
+        align-items: center;    /* Centraliza os botões no meio */
+        gap: 20px;              /* Diminui o espaço entre eles */
+    }
+
+    /* 2. Ajusta o tamanho dos botões para caber melhor na vertical */
+    .btn-opcao {
+        width: 100%;       /* Ocupa a largura total do container */
+        max-width: 350px;  /* Limita a largura máxima */
+        height: 180px;     /* Diminui um pouco a altura */
+    }
+
+    .btn-opcao i {
+        font-size: 60px; /* Diminui um pouco o tamanho do ícone */
+        margin-bottom: 15px;
+    }
+
+    .btn-opcao span {
+        font-size: 1.3rem; /* Diminui um pouco o texto do botão */
+    }
+
+    /* 3. Reduz um pouco os espaçamentos gerais para caber tudo */
+    .totem-container {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+}

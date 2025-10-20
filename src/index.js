@@ -5,6 +5,7 @@ const SECRET = "Nayara bobona askdp[ asopdj opsad psapod iopasidp[ oas[pd kap"
 const prisma = require("./prima")
 
 const express = require("express")
+const path = require("path");
 const jsonwebtoken = require("jsonwebtoken")
 const porta = 3000
 const app = express()
@@ -17,6 +18,10 @@ app.use(express.urlencoded({limit: '50mb'}));
 
 
 app.use("/sistema", express.static("sistema"))
+
+// NOVA REGRA PARA O TOTEM (adicione esta linha)
+app.use("/totem", express.static(path.join(__dirname, '..', 'totem')));
+
 app.use(express.json())
 
 // Rota raiz redirecionando para a página de login
@@ -24,9 +29,10 @@ app.get('/', (req, res) => {
     res.redirect('/sistema/Login/Login.html');
 });
 
-app.get("/oi", (req, res) => {
-    res.send(``)
-})
+// 3. NOVA ROTA DO TOTEM ADICIONADA
+app.get('/totem', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'totem', 'totem.html'));
+});
 
 app.post("/login", async (req, res) => {
     const user = await prisma.cadastro_user.findUniqueOrThrow({
@@ -45,6 +51,7 @@ app.post("/login", async (req, res) => {
         token
     })
 })
+
 
 app.post("/verify", async (req, res) => {
     const { usuario } = jsonwebtoken.verify(req.body.token, SECRET)
